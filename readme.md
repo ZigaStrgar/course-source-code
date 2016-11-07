@@ -1,3 +1,12 @@
+# Kaj naredim?
+Na [Cloud9](https://c9.io) ustvariš nov workspace mu daš neko ime in skopiraš to povezavo v okno "Clone from Git or mercurial URL" [https://github.com/ZigaStrgar/fresh-laravel](https://github.com/ZigaStrgar/fresh-laravel). Počakaš da se vse naloži nato pa odpreš nov Terminal (Window -> New Terminal) in vpišeš sledeči ukaz
+
+```bash
+./skripta.sh
+```
+
+In nato samo slediš izpisu pritisneš kar zahteva, verjetno samo y ali Enter ;)
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
