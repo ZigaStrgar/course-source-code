@@ -5,7 +5,7 @@ Na [Cloud9](https://c9.io) ustvariš nov workspace mu daš neko ime in skopiraš
 ./skripta.sh
 ```
 
-In nato samo slediš izpisu pritisneš kar zahteva, verjetno samo y ali Enter ;)
+In nato samo slediš izpisu pritisneš kar zahteva, verjetno samo **y** ali **Enter** ;)
 
 # Laravel PHP Framework
 
