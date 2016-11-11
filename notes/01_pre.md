@@ -29,4 +29,16 @@ Nato pa poženem
 git clone https://github.com/ZigaStrgar/course-source-code
 ```
 
+Ko se zgornja operacija zaključi poskrbim da composer naloži vse odvisnosti Laravela.
+
+```bash
+composer install
+```
+
+Po uspešnem nalaganju knjižnic pa samo poskrbim da ima moja aplikacija svoj ključ. To uredim z ukazom:
+
+```bash
+php artisan generate:key
+```
+
 Preimenujem `.env.example` v `.env` in poskrbim da so vse vrednosti pravilno nastavljene
