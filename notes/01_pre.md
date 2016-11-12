@@ -46,5 +46,5 @@ Preimenujem `.env.example` v `.env` in poskrbim da so vse vrednosti pravilno nas
 In nazadnje še izbrišem .git mapo, če je skrita potem v mapi izvedem sledečo kombinacijo `Left Shift + Right click` in izberem `Open command window here` vpišem sledeči ukaz.
 
 ```bash
-rmdir /SQ .git
+rmdir /S /Q .git
 ```
