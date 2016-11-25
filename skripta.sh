@@ -13,4 +13,5 @@ composer install;
 cp .env.example .env;
 php artisan key:generate;
 sudo rm -rf .git;
+sudo service mysql restart;
 sudo rm skripta.sh
