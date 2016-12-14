@@ -15,8 +15,5 @@ Route::get('/', function() {
     return view('welcome');
 });
 
-Route::get('about', function() {
-    return "Hi! I'm a pretty page!";
-});
-
-Route::get('smth', 'PagesController@index');
+Route::resource('posts', 'PostsController');
+Route::resource('categories', 'CategoriesController', [ 'except' => [ 'show' ] ]);
