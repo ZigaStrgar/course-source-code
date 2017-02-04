@@ -34,4 +34,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    /**
+     * Check's if user is admin
+     *
+     * @param null $type
+     *
+     * @return bool
+     */
+    public function admin($type = null)
+    {
+        if ( $type ) {
+            return $this->type == $type;
+        }
+
+        return !!$this->type;
+    }
 }

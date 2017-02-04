@@ -17,3 +17,6 @@ Route::get('/', function() {
 
 Route::resource('posts', 'PostsController');
 Route::resource('categories', 'CategoriesController', [ 'except' => [ 'show' ] ]);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

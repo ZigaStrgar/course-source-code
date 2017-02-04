@@ -3,17 +3,19 @@
 namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+
     public static function boot()
     {
         parent::boot();
 
-        static::addGlobalScope('published_desc', function(Builder $builder) {
-            $builder->orderBy('published', 'DESC');
+        static::addGlobalScope('order', function(Builder $builder) {
+            $builder->orderBy('created_at', 'DESC');
         });
     }
 
@@ -37,6 +39,11 @@ class Post extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getCategoryListAttribute()
+    {
+        return $this->categories->pluck('id')->toArray();;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -39,9 +40,10 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $post = Post::create($request->all())->user()->associate($request->user()->id);
+        $post = $request->user()->posts()->create($request->all());
+        $this->syncCategories($post, $request);
 
         return redirect('posts/' . $post->slug);
     }
@@ -74,9 +76,9 @@ class PostsController extends Controller
     public function edit($slug)
     {
         $post       = Post::where('slug', $slug)->first();
-        $categories = Category::all();
+        $categories = Category::pluck('name', 'id');
 
-        return view('posts.post', compact('post', 'categories'));
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -99,16 +101,29 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param $slug
+     * @param $id
      *
      * @return \Illuminate\Http\Response
      * @internal param int $id
      *
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        Post::where('slug', $slug)->delete();
+        Post::find($id)->first()->delete();
 
-        return redirect('posts');
+        return "success";
+    }
+
+    private function syncCategories(Post $post, Request $request)
+    {
+        $categories = $request->input('category_list');
+        $ids        = [];
+        foreach ( $categories as $category ) {
+            if ( is_numeric($category) )
+                $ids[] = $category; else
+                $ids[] = Category::firstOrCreate([ 'name' => $category ])->id;
+        }
+
+        $post->categories()->sync($ids);
     }
 }

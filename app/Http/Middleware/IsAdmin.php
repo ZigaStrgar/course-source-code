@@ -9,12 +9,21 @@ class IsAdmin
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure                 $next
+     *
+     * @param string                    $type
+     *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $type = 'admin')
     {
-        return $next($request);
+        $user = $request->user();
+
+        if ( $user && $user->admin($type) ) {
+            return $next($request);
+        }
+
+        return redirect()->back();
     }
 }

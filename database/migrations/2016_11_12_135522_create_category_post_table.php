@@ -31,7 +31,8 @@ class CreateCategoryPostTable extends Migration
     public function down()
     {
         Schema::table('category_post', function(Blueprint $table) {
-            $table->dropForeign([ 'post_id', 'category_id' ]);
+            $table->dropForeign([ 'post_id' ]);
+            $table->dropForeign([ 'category_id' ]);
         });
 
         Schema::dropIfExists('category_post');
